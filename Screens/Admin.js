@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const UseServices = () => {
+const Admin = () => {
   return (
-    <View >
-      <Text style={{textAlign:'center', fontSize:32}}>Mafi service :(</Text>
+    <View>
+      <Text>Admin</Text>
     </View>
   )
 }
 
-export default UseServices
+export default Admin
 
 const styles = StyleSheet.create({})
