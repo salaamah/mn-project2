@@ -1,38 +1,43 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
+
+//const image = { uri: "https://picsum.photos/200/300"};
 
 const Home = ({navigation}) => {
   return (
-    <View>
+    <View>    
         <View>
             <Text style = {styles.welcome}>
                 Welcome to{'\n'}Al-Masjid An-Nabawi!
             </Text>
         </View>
-        <View style={styles.buttons}>
+        <View style={styles.buttonContainer}>
             <TouchableOpacity
+            style={styles.button}
             onPress={()=>{
                 navigation.navigate('Login');
             }
             }
             >
-                <Text style={styles.button}>Login</Text>
+                <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity
+            style={styles.button}
             onPress={()=>{
                 navigation.navigate('Register');
             }
             }
             >
-                <Text style={styles.button}>Register</Text>
+                <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
             <TouchableOpacity
+            style={styles.button}
             onPress={()=>{
                 navigation.navigate('UseServices');
             }
             }
             >
-                <Text style={styles.button}>Continue without login</Text>
+                <Text style={styles.buttonText}>Continue without login</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -49,13 +54,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 40
     },
-    button: {
-        textAlign: 'center',
-        backgroundColor: 'blue',
-        marginTop: 10,
-        paddingVertical: 10,
-        marginHorizontal:80,
-        borderRadius: 10,
-        fontSize: 18
-    }
+    buttonContainer:{
+        //flex: 1,
+        //backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    button:{
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 20,
+        backgroundColor: "#199187",
+        //backgroundColor: "#FF1493",
+    },
+    buttonText: {
+         fontSize: 20
+    },
 })

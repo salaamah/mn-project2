@@ -7,75 +7,75 @@ const Login = ({navigation}) => {
     const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
-        <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
- 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-      <TouchableOpacity onPress={()=>{
-        navigation.navigate('Register');}}>
-        <Text style={styles.noAccount}>Don't have account?{'\n'}Register.</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-      style={styles.loginBtn} onPress={()=>{
-        navigation.navigate('UseServices');}}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
+        <View style={styles.loginForm}>
+            <Text style={styles.header}>Login</Text>
+            <TextInput
+                style={styles.TextInput}
+                placeholder="Email."
+                onChangeText={(email) => setEmail(email)}
+            />
+            <TextInput
+                style={styles.TextInput}
+                placeholder="Password."
+                secureTextEntry={true}
+                onChangeText={(password) => setPassword(password)}
+            />
+            <TouchableOpacity 
+                style={styles.button} onPress={()=>{
+                    navigation.navigate('UseServices');}}>
+                <Text style={styles.buttonText}>LOGIN</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>{
+                navigation.navigate('Register');}}>
+                <Text style={styles.noAccount}>Don't have account?{'\n'}Register.</Text>
+            </TouchableOpacity>
+        </View>
     </View>
-  );
+  )
 }
 
 export default Login
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        flex:1,
+        justifyContent:'center',
+        backgroundColor:"#36485f",
+        paddingLeft:60,
+        paddingRight:60,
       },
-      inputView: {
-        backgroundColor: "#FFC0CB",
-        borderRadius: 30,
-        width: "70%",
-        height: 45,
-        marginBottom: 20,
-     
-        alignItems: "center",
+      loginForm:{
+        alignSelf: 'stretch'
       },
-     
+      header:{
+        fontSize: 24,
+        color: '#fff',
+        paddingBottom:10,
+        marginBottom:40,
+        borderBottomColor:'#199187',
+        borderBottomWidth: 1
+    },
       TextInput: {
-        height: 50,
-        flex: 1,
-        padding: 10,
-        marginLeft: 20,
-      },
-      noAccount: {
+        alignSelf: 'stretch',
         height: 40,
-        marginBottom: 30,
-        textAlign: 'center'
+        marginBottom:30,
+        color: 'red',
+        borderBottomColor: '#f8f8f8',
+        borderBottomWidth:1
       },
-      loginBtn: {
-        width: "80%",
-        borderRadius: 25,
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 40,
-        backgroundColor: "#FF1493",
+      button:{
+        alignSelf:'stretch',
+        alignItems:'center',
+        padding:20,
+        backgroundColor:'#59cbbd',
+        marginTop:30,
+      },
+      buttonText:{
+        color:'#fff',
+        fontWeight: 'bold'
+    },
+      noAccount: {
+        marginTop:10,
+        textAlign:'center'
       },
 })
