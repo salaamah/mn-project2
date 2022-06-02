@@ -1,22 +1,26 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-//import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
-//import {auth} from '../firebase.init'
-
-//const auth = getAuth(app);
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {useState} from 'react';
+import {auth} from '../firebase'
 
 const Register = ({navigation}) => {
-    //const [email, setEmail] = useState("");
-    //const [password, setPassword] = useState("");
-    // const handleRegister = () =>{
-    //     auth
-    //         .createUserWithEmailAndPassword(email, password)
-    //         .then(userCredentials =>{
-    //             const user = userCredentials.user;
-    //             console.log(user);
-    //         })
-    //         .catch(error=>alert(error.message))
-    // }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleRegister = async () => {
+        try {
+            const user = await createUserWithEmailAndPassword(auth, email, password);
+            console.log(user);
+        } catch (error) {
+            console.log(error.message);
+            console.log(email, password);
+        }
+    };
+
+    //const handleLogin = async () =>{};
+
+    //const handleLogout = async () =>{};
+    
   return (
     <View style={styles.container}>
         <View style = {styles.regForm}>
@@ -28,19 +32,17 @@ const Register = ({navigation}) => {
             <TextInput 
                 style={styles.textInput} 
                 placeholder='Your email' 
-                //onChangeText={(email) => setEmail(email)}
+                onChangeText={(email) => setEmail(email)}
                 underlineColorAndroid={'transparent'}/>
             <TextInput 
                 style={styles.textInput} 
                 placeholder='Password' 
-                //onChangeText={(password) => setPassword(password)}
+                onChangeText={(password) => setPassword(password)}
                 secureTextEntry={true} 
                 underlineColorAndroid={'transparent'}/>
             <TouchableOpacity 
                 style={styles.button} 
-                onPress={()=>{
-                    navigation.navigate('UseServices');
-                }}
+                onPress={handleRegister}
             >
                 <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>

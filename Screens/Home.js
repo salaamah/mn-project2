@@ -8,7 +8,7 @@ const Home = ({navigation}) => {
     <View>    
         <View>
             <Text style = {styles.welcome}>
-                Welcome to{'\n'}Al-Masjid An-Nabawi!
+                Welcome to{'\n'} The Electronic Services of{'\n'}Al-Masjid An-Nabawi!
             </Text>
         </View>
         <View style={styles.buttonContainer}>
