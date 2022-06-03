@@ -5,7 +5,7 @@ import React from 'react'
 
 const Home = ({navigation}) => {
   return (
-    <View>    
+    <View> 
         <View>
             <Text style = {styles.welcome}>
                 Welcome to{'\n'} The Electronic Services of{'\n'}Al-Masjid An-Nabawi!

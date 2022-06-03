@@ -11,9 +11,9 @@ const Register = ({navigation}) => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             console.log(user);
+            navigation.navigate('UseServices');
         } catch (error) {
             console.log(error.message);
-            console.log(email, password);
         }
     };
 
