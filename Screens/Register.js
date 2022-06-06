@@ -11,16 +11,11 @@ const Register = ({navigation}) => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             console.log(user);
-            navigation.navigate('UseServices');
         } catch (error) {
             console.log(error.message);
         }
     };
 
-    //const handleLogin = async () =>{};
-
-    //const handleLogout = async () =>{};
-    
   return (
     <View style={styles.container}>
         <View style = {styles.regForm}>

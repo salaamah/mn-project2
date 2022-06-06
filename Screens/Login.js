@@ -1,10 +1,38 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
 
 const Login = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+  const handleSignin = async () => {
+    try {
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        console.log(user);
+        // switch(email) {
+        //   case 'admin@test.com':
+        //     navigation.navigate('Admin');
+        //   case 'sp@test.com':
+        //     navigation.navigate('ServiceProvider');
+        //   default:
+        //     navigation.navigate('UseServices');
+        // }
+        if (email.toLocaleLowerCase() == 'admin@test.com'){
+          navigation.navigate('Admin');
+        }else if(email.toLocaleLowerCase() == 'sp@test.com'){
+          navigation.navigate('ServiceProvider');
+        }else{
+          navigation.navigate('UseServices');
+        }
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
   return (
     <View style={styles.container}>
         <View style={styles.loginForm}>
@@ -21,8 +49,7 @@ const Login = ({navigation}) => {
                 onChangeText={(password) => setPassword(password)}
             />
             <TouchableOpacity 
-                style={styles.button} onPress={()=>{
-                    navigation.navigate('UseServices');}}>
+                style={styles.button} onPress={handleSignin}>
                 <Text style={styles.buttonText}>LOGIN</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{

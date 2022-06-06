@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Prayer Times",
+        "icon":"../assets/images/PrayerTime.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Guidence",
+        "icon":"../assets/images/Guidance.jpeg"
+    },
+    {
+        "id": 3,
+        "title": "Lost and Found",
+        "icon":"../assets/images/LostAndFound.jpeg"
+    },
+    {
+        "id": 4,
+        "title": "Zamzam",
+        "icon":"../assets/images/Zamzam.jpeg"
+    }
+]

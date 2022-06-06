@@ -1,7 +1,8 @@
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 
 const UseServices = ({navigation}) => {
+ 
   return (
     <View style={styles.background}>
       <Text style={styles.text}>Available services</Text>
@@ -38,7 +39,7 @@ const UseServices = ({navigation}) => {
       <TouchableOpacity 
         style={styles.button} 
         onPress={()=>{
-          navigation.navigate('Login');}}
+          navigation.navigate("Home");}}
       >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
@@ -61,12 +62,16 @@ const styles = StyleSheet.create({
   button:{
     alignSelf:'center',
     alignItems:'center',
-    padding:20,
-    backgroundColor:'#59cbbd',
+    padding:12,
+    backgroundColor:'#345B2A',
     marginTop:50,
     width:120,
     borderRadius:5,
     
+  },
+  buttonText:{
+    fontWeight:'bold',
+    fontSize: 18,
   },
   service:{
     height:150,
