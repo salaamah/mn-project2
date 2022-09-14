@@ -11,7 +11,9 @@ const Home = ({navigation}) => {
             <View>
                 <Text style = {styles.welcome}>
                     Welcome to{'\n'}
-                    <Text style={{fontSize: 23}}>The Electronic Services of</Text>
+                    <Text style={{fontSize: 23}}>
+                        The Electronic Services of
+                    </Text>
                     {'\n'}Al-Masjid An-Nabawi!
                 </Text>
             </View>

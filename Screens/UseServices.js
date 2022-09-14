@@ -7,7 +7,13 @@ const UseServices = ({navigation}) => {
     <View style={styles.background}>
       <Text style={styles.text}>Available services</Text>
       <View style={styles.serviceContainer}>
-        <TouchableOpacity style={styles.service}>
+        <TouchableOpacity 
+        style={styles.service}
+        onPress={()=>{
+          navigation.navigate('PrayerTimes');
+        }
+        }
+        >
           <Image
             style={styles.image}
             source={require('../assets/images/PrayerTime.jpeg')}
