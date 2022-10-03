@@ -8,7 +8,7 @@ const Home = ({navigation}) => {
             style={styles.bg}
             source={require('../assets/mn-bg2.png')}
         >
-            <View>
+            
                 <Text style = {styles.welcome}>
                     Welcome to{'\n'}
                     <Text style={{fontSize: 23}}>
@@ -16,7 +16,7 @@ const Home = ({navigation}) => {
                     </Text>
                     {'\n'}Al-Masjid An-Nabawi!
                 </Text>
-            </View>
+            
             <View style={styles.buttonContainer}>
             <TouchableOpacity
             style={styles.button}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         color: '#345B2A',
         fontWeight:'bold',
         //fontVariant:'',
-        height:100, 
+        height:"20%", 
         fontSize: 28,
         textAlign: 'center',
         marginVertical: 40

@@ -1,26 +1,50 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const ServiceProvider = () => {
+const ServiceProvider = ({navigation}) => {
   return (
-    <View>
-      <Text style={styles.text}>
-        <Text style={{fontSize: 24,fontWeight:'bold'}}>Service Provider can:{'\n'}</Text>
-        Submit new service{'\n'}See provided services
-      </Text>
-    </View>
+    <ImageBackground
+      style={styles.bg}
+      source={require('../assets/mn-bg2.png')}>
+        <View style={styles.innerBox}>
+        <TouchableOpacity      
+          style={styles.button} 
+          onPress={()=>{
+            navigation.navigate("AddService");
+            }
+          }
+          >
+          <Text style={styles.buttonText}>Add new service</Text>            
+        </TouchableOpacity>
+        </View>
+    </ImageBackground>
   )
 }
 
 export default ServiceProvider
 
 const styles = StyleSheet.create({
-  text: {
-    color: 'black',
-    fontWeight:'normal',
-    height:100, 
-    fontSize: 20,
-    textAlign: 'center',
-    marginVertical: 40
+  bg:{
+    height:"100%",
+    width:"100%",
+    flex:1,
+    justifyContent:'center', 
+           
+},
+  innerBox: {
+      alignSelf: 'stretch',
+      paddingLeft:60,
+        paddingRight:60,
+  },
+  button:{
+    alignSelf:'stretch',
+    alignItems:'center',
+    padding:20,
+    backgroundColor:'#59cbbd',
+    marginTop:30,
+},
+buttonText:{
+    color:'#fff',
+    fontWeight: 'bold'
 },
 })

@@ -1,25 +1,18 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, ImageBackground, TouchableOpacity, View } from 'react-native'
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 
 const Login = ({navigation}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSignin = async () => {
     try {
         const user = await signInWithEmailAndPassword(auth, email, password);
         console.log(user);
-        // switch(email) {
-        //   case 'admin@test.com':
-        //     navigation.navigate('Admin');
-        //   case 'sp@test.com':
-        //     navigation.navigate('ServiceProvider');
-        //   default:
-        //     navigation.navigate('UseServices');
-        // }
+        
         if (email.toLocaleLowerCase() == 'admin@test.com'){
           navigation.navigate('Admin');
         }else if(email.toLocaleLowerCase() == 'sp@test.com'){
@@ -34,7 +27,9 @@ const Login = ({navigation}) => {
 };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground 
+        style={styles.bg}
+        source={require('../assets/mn-bg2.png')}>
         <View style={styles.loginForm}>
             <Text style={styles.header}>Login</Text>
             <TextInput
@@ -57,7 +52,7 @@ const Login = ({navigation}) => {
                 <Text style={styles.noAccount}>Don't have account?{'\n'}Register.</Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -72,7 +67,15 @@ const styles = StyleSheet.create({
         paddingRight:60,
       },
       loginForm:{
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
+        paddingLeft:60,
+        paddingRight:60,
+      },
+      bg:{
+        height:"100%",
+        width:"100%",
+        flex:1,
+        justifyContent:'center',        
       },
       header:{
         fontSize: 24,

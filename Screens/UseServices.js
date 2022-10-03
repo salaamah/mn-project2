@@ -1,10 +1,14 @@
-import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native'
+import { StyleSheet, TouchableOpacity, Text, View, Image, ImageBackground } from 'react-native'
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
-const UseServices = ({navigation}) => {
- 
+const UseServices = ({navigation}) => { 
   return (
-    <View style={styles.background}>
+    <ImageBackground 
+    style={styles.bg}
+    source={require('../assets/mn-bg-sky.png')}
+      >
+      
       <Text style={styles.text}>Available services</Text>
       <View style={styles.serviceContainer}>
         <TouchableOpacity 
@@ -49,7 +53,7 @@ const UseServices = ({navigation}) => {
       >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -57,9 +61,15 @@ export default UseServices
 
 const styles = StyleSheet.create({
   background:{
-    //backgroundColor:"#36485f",
+    backgroundColor:"#ffe6cc",
     height:700
   },
+  bg:{
+    height:"100%",
+    width:"100%",
+    flex:1,
+    justifyContent:'center',        
+},
   text:{
     textAlign:'center',
     fontSize:20,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 const PrayerTimes = () => {
@@ -7,52 +7,63 @@ const PrayerTimes = () => {
   useEffect( ()=>{
     fetch('https://api.aladhan.com/v1/timingsByCity?city=Madinah&country=Saudi%20Arabia%20&method=4')
     .then(res=>res.json())
-    .then(result=>setTimeTable(result.data.timings))
+    .then(result=>setTimeTable(result.data))
   },[]);
-  //const {Fajr,Sunrise,Dhuhr,Asr,Maghrib,Isha} = timeTable.timings;
-  const Fajr = timeTable.Fajr
-  const Dhuhr = timeTable.Dhuhr;
-  const Asr = timeTable.Asr;
-  const Maghrib = timeTable.Maghrib;
-  const Isha = timeTable.Isha;
+  
+  const Fajr = timeTable.timings?.Fajr;
+  const Dhuhr = timeTable.timings?.Dhuhr;
+  const Asr = timeTable.timings?.Asr;
+  const Maghrib = timeTable.timings?.Maghrib;
+  const Isha = timeTable.timings?.Isha;
+  const day = timeTable.date?.gregorian?.weekday?.en;
+  const date = timeTable.date?.readable
+  const hijri = timeTable.date?.hijri?.date
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Prayer Times in Madinah</Text>
+        <Text style={{textAlign:"center",fontSize:20,fontWeight:'bold'}}>
+          Prayer Times in Madinah
+          {'\n'}{day}
+          {'\n'}{date}
+          {'\n'}{hijri}
+        </Text>
       </View>
 
-      <View style={styles.timesContainer}>
-        <View style={styles.nameBox}>
-          <Text>Fazr:</Text>
+      <ImageBackground 
+      style={styles.timesContainer}
+      source={require('../assets/mn-bg-sky.png')}
+      >
+        <View style={styles.box}>
+          <Text style={styles.text}>Fazr:</Text>
         </View>
-        <View style={styles.timeBox}>
-          <Text>{Fajr}</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>{Fajr}</Text>
         </View>
-        <View style={styles.nameBox}>
-          <Text>Juhr:</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>Juhr:</Text>
         </View>
-        <View style={styles.timeBox}>
-          <Text>{Dhuhr}</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>{Dhuhr}</Text>
         </View>
-        <View style={styles.nameBox}>
-          <Text>Asr:</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>Asr:</Text>
         </View>
-        <View style={styles.timeBox}>
-          <Text>{Asr}</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>{Asr}</Text>
         </View>
-        <View style={styles.nameBox}>
-          <Text>Magrib:</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>Magrib:</Text>
         </View>
-        <View style={styles.timeBox}>
-          <Text>{Maghrib}</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>{Maghrib}</Text>
         </View>
-        <View style={styles.nameBox}>
-          <Text>Isha:</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>Isha:</Text>
         </View>
-        <View style={styles.timeBox}>
-          <Text>{Isha}</Text>
+        <View style={styles.box}>
+          <Text style={styles.text}>{Isha}</Text>
         </View>
-      </View>      
+      </ImageBackground>      
     </View>
   )
 }
@@ -63,34 +74,34 @@ const styles = StyleSheet.create({
   container:{
     flex: 1
   },
+  timesContainer:{
+    height:"100%",
+    width:"100%",
+    //flex:1,
+    //justifyContent:'center',  
+    //padding: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap'      
+},
   header:{
     width: '100%',
     height: '20%',
     backgroundColor: '#c8c8c8',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign:"center",
   },
-  timesContainer:{
-    width: '100%',
-    height: '80%',
-    padding: 5,
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  nameBox:{
+  box:{
     width: '40%',
     height: '10%',
     padding: 10,
-    backgroundColor: '#dbbabd',
+    backgroundColor: "#7B7F40",
     margin: '5%',
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: "center"
   },
-  timeBox:{
-    width: '40%',
-    height: '10%',
-    margin: '5%',
-    padding: 10,
-    backgroundColor: '#e4cbcd',
-    borderRadius: 10
-  }
+
+  text:{
+    fontSize:22,
+  },
 })

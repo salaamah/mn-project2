@@ -1,16 +1,37 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import SelectList from 'react-native-dropdown-select-list'
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {useState} from 'react';
 import {auth} from '../firebase'
 
 const Register = ({navigation}) => {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [selected, setSelected] = useState("");
+    const data = [
+                    {key:'1',value:'Visitor'},
+                    {key:'2',value:'Service Provider'}
+                ];
 
     const handleRegister = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             console.log(user);
+            const userData = {name, email, selected};
+            fetch('https://mn-server.herokuapp.com/users',{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userData)  
+            })
+            .then(res=>res.json())
+            .catch((error) => console.warn("fetch error:", error))
+            .then(data=>{
+                console.log('success',data)
+            })  
             navigation.navigate('UseServices');
         } catch (error) {
             console.log(error.message);
@@ -18,12 +39,15 @@ const Register = ({navigation}) => {
     };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground 
+        style={styles.bg}
+        source={require('../assets/mn-bg2.png')}>
         <View style = {styles.regForm}>
             <Text style={styles.header}>Registration</Text>
             <TextInput 
                 style={styles.textInput} 
-                placeholder='Your name' 
+                placeholder='Your name'
+                onChangeText={(name) => setName(name)}
                 underlineColorAndroid={'transparent'}/>
             <TextInput 
                 style={styles.textInput} 
@@ -36,6 +60,12 @@ const Register = ({navigation}) => {
                 onChangeText={(password) => setPassword(password)}
                 secureTextEntry={true} 
                 underlineColorAndroid={'transparent'}/>
+            <SelectList 
+                setSelected={setSelected}
+                data={data} 
+                search={false}
+                defaultOption={{ key:'3', value:'Select user type' }}
+            />
             <TouchableOpacity 
                 style={styles.button} 
                 onPress={handleRegister}
@@ -47,22 +77,23 @@ const Register = ({navigation}) => {
                 <Text style={styles.haveAccount}>Already have an account?{'\n'}Login.</Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </ImageBackground>
   )
 }
 
 export default Register
 
 const styles = StyleSheet.create({
-    container:{
+    bg:{
+        height:"100%",
+        width:"100%",
         flex:1,
-        justifyContent:'center',
-        backgroundColor:"#36485f",
-        paddingLeft:60,
-        paddingRight:60,
+        justifyContent:'center',        
     },
     regForm: {
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
+        paddingLeft:60,
+        paddingRight:60,
     },
     header:{
         fontSize: 24,

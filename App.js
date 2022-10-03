@@ -10,6 +10,7 @@ import UseServices from './Screens/UseServices';
 import Admin from './Screens/Admin';
 import ServiceProvider from './Screens/ServiceProvider';
 import PrayerTimes from './Screens/PrayerTimes';
+import AddService from './Screens/AddService';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Admin" component={Admin}/>
         <Stack.Screen name="ServiceProvider" component={ServiceProvider}/>
         <Stack.Screen name="PrayerTimes" component={PrayerTimes}/>
+        <Stack.Screen name="AddService" component={AddService}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
