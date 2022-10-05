@@ -20,7 +20,8 @@ const Admin = ({navigation}) => {
     <ImageBackground 
       style={styles.bg}
       source={require('../assets/mn-bg2.png')}>
-      <View style={styles.innerBox}>
+      <View style={styles.innerBox}>    
+        <Text style={styles.header}>This is Admin page. {'\n'}More options will be added</Text>
         <Text>Number of users: {user}</Text>
         <Text>Number of services: {services}</Text>
         <TouchableOpacity      
@@ -53,12 +54,12 @@ const styles = StyleSheet.create({
         paddingRight:60,
   },
   header:{
-      fontSize: 24,
+      fontSize: 20,
       color: '#fff',
-      paddingBottom:10,
-      marginBottom:40,
+      marginBottom:90,
       borderBottomColor:'#199187',
-      borderBottomWidth: 1
+      borderBottomWidth: 1,
+      textAlign:"center"
   },
   textInput:{
       alignSelf: 'stretch',

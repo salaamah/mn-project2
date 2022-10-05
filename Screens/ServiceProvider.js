@@ -7,6 +7,8 @@ const ServiceProvider = ({navigation}) => {
       style={styles.bg}
       source={require('../assets/mn-bg2.png')}>
         <View style={styles.innerBox}>
+        <Text style={styles.header}>This is Service Provider page. {'\n'}More options will be added</Text>
+
         <TouchableOpacity      
           style={styles.button} 
           onPress={()=>{
@@ -36,6 +38,14 @@ const styles = StyleSheet.create({
       paddingLeft:60,
         paddingRight:60,
   },
+  header:{
+    fontSize: 20,
+    color: '#fff',
+    marginBottom:90,
+    borderBottomColor:'#199187',
+    borderBottomWidth: 1,
+    textAlign:"center"
+},
   button:{
     alignSelf:'stretch',
     alignItems:'center',

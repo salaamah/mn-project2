@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 const AddService = ({navigation}) => {
     const [title, setTitle] = useState("");
     const [sp, setSp]  = useState("");
+    const [api, setApi] = useState("");
     const [description, setDescription] = useState("");
 
     const handleAddService = () =>{
@@ -39,6 +40,11 @@ const AddService = ({navigation}) => {
                 style={styles.textInput} 
                 placeholder='Name of Service Provider' 
                 onChangeText={(sp) => setSp(sp)}
+                underlineColorAndroid={'transparent'}/>
+            <TextInput 
+                style={styles.textInput} 
+                placeholder='API endpoint of the service' 
+                onChangeText={(api) => setApi(api)}
                 underlineColorAndroid={'transparent'}/>
             <TextInput 
                 style={styles.textInput} 
