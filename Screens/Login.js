@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TextInput, ImageBackground, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, ImageBackground, TouchableOpacity, View, Alert } from 'react-native'
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 
 const Login = ({navigation}) => {
@@ -22,9 +22,21 @@ const Login = ({navigation}) => {
         }
         
     } catch (error) {
-        console.log(error.message);
+      Alert.alert(error.message);
     }
-};
+  };
+
+  const resetPass = ()=>{
+    if (email == ""){
+      Alert.alert("Please insert your email");
+    }else{
+      sendPasswordResetEmail(auth, email)
+      .then(()=>{
+      Alert.alert("Please check inbox to reset your e-mail. Or check spam");
+  })
+    }
+    
+  };
 
   return (
     <ImageBackground 
@@ -49,7 +61,10 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{
                 navigation.navigate('Register');}}>
-                <Text style={styles.noAccount}>Don't have account?{'\n'}Register.</Text>
+                <Text style={styles.noAccount}>Don't have account? Register.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.forgotPass} onPress={resetPass}>Forgot password?</Text>
             </TouchableOpacity>
         </View>
     </ImageBackground>
@@ -106,6 +121,14 @@ const styles = StyleSheet.create({
     },
       noAccount: {
         marginTop:10,
-        textAlign:'center'
+        textAlign:'center',
+        textDecorationLine: 'underline',
+        color:"blue"
       },
+      forgotPass:{
+        textAlign:'center',
+        textDecorationLine: 'underline',
+        color:"red",
+        marginTop:10
+      }
 })

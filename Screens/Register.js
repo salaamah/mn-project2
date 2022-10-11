@@ -1,6 +1,6 @@
-import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import SelectList from 'react-native-dropdown-select-list'
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
 import {useState} from 'react';
 import {auth} from '../firebase'
 
@@ -18,6 +18,7 @@ const Register = ({navigation}) => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             console.log(user);
+            verifyEmail();
             const userData = {name, email, selected};
             fetch('https://mn-server.herokuapp.com/users',{
                 method: 'POST',
@@ -28,15 +29,22 @@ const Register = ({navigation}) => {
                 body: JSON.stringify(userData)  
             })
             .then(res=>res.json())
-            .catch((error) => console.warn("fetch error:", error))
             .then(data=>{
-                console.log('success',data)
-            })  
-            navigation.navigate('UseServices');
+                console.log('Posted data:',data)
+            })
+            .catch((error) => console.warn("fetch error:", error))
+            navigation.navigate('Login');
         } catch (error) {
-            console.log(error.message);
+            Alert.alert(error.message);
         }
     };
+
+    const verifyEmail = () =>{
+        sendEmailVerification(auth.currentUser)
+        .then(()=>{
+            Alert.alert("Please check inbox to verify your e-mail. Or check spam");
+        })
+    }
 
   return (
     <ImageBackground 
@@ -74,7 +82,7 @@ const Register = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{
                 navigation.navigate('Login');}}>
-                <Text style={styles.haveAccount}>Already have an account?{'\n'}Login.</Text>
+                <Text style={styles.haveAccount}>Already have an account? Login.</Text>
             </TouchableOpacity>
         </View>
     </ImageBackground>
@@ -124,6 +132,8 @@ const styles = StyleSheet.create({
     },
     haveAccount:{
         marginTop:10,
-        textAlign:'center'
+        textAlign:'center',
+        textDecorationLine: 'underline',
+        color:"blue"
     }
 })
