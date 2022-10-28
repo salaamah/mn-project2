@@ -32,7 +32,7 @@ const Register = ({navigation}) => {
             .then(data=>{
                 console.log('Posted data:',data)
             })
-            .catch((error) => console.warn("fetch error:", error))
+            //.catch((error) => console.warn("fetch error:", error))
             navigation.navigate('Login');
         } catch (error) {
             Alert.alert(error.message);

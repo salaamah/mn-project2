@@ -1,4 +1,4 @@
-import { StyleSheet, ImageBackground, TextInput, TouchableOpacity, Text, View } from 'react-native'
+import { StyleSheet, ImageBackground, TextInput, TouchableOpacity, Text, View, Alert } from 'react-native'
 import React, { useState } from 'react'
 
 const AddService = ({navigation}) => {
@@ -8,21 +8,23 @@ const AddService = ({navigation}) => {
     const [description, setDescription] = useState("");
 
     const handleAddService = () =>{
-        const service = {title, sp, description};
-        fetch('https://mn-server.herokuapp.com/services',{
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'content-type': 'application/json'
+        const service = {title, sp, api, description};
+        try{
+            fetch('https://mn-server.herokuapp.com/services',{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type': 'application/json'
             },
-            body: JSON.stringify(service)  
-        })
-        .then(res=>res.json())
-        .catch((error) => console.warn("fetch error:", error))
-        .then(data=>{
-            console.log('success',data)
-        })  
-        navigation.navigate('Admin');
+                body: JSON.stringify(service)  
+            })
+            .then(res=>res.json())
+            Alert.alert(title,"is added successfully!");
+            navigation.navigate('Admin');
+        }catch(error){
+            Alert.alert(error.message);
+        }
+        
     }
 
   return (

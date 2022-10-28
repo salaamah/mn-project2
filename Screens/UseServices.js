@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, TouchableOpacity, Text, View, Image, ImageBackground, ScrollView } from 'react-native'
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ const UseServices = ({navigation}) => {
     style={styles.bg}
     source={require('../assets/mn-bg-sky.png')}
       >
-      
+      <ScrollView>
       <Text style={styles.text}>Available services</Text>
       <View style={styles.serviceContainer}>
         <TouchableOpacity 
@@ -45,7 +45,21 @@ const UseServices = ({navigation}) => {
           />
           <Text style={styles.text}>Zamzam</Text>
         </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.service}
+          onPress={()=>{
+            navigation.navigate('Currency');
+          }
+          }>
+          <Image
+            style={styles.image}
+            source={require('../assets/cx.jpg')}
+          />
+          <Text style={styles.text}>Exchange Rate</Text>
+        </TouchableOpacity>
       </View>
+      </ScrollView>
+      
       <TouchableOpacity 
         style={styles.button} 
         onPress={()=>{
@@ -80,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     padding:12,
     backgroundColor:'#345B2A',
-    marginTop:50,
+    margin:50,
     width:120,
     borderRadius:5,
     
@@ -103,6 +117,6 @@ const styles = StyleSheet.create({
   serviceContainer:{
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
 })
