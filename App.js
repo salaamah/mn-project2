@@ -6,12 +6,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import Home from './Screens/Home';
 import Login from './Screens/Login';
 import Register from './Screens/Register';
-import UseServices from './Screens/UseServices';
+import Services from './Screens/Services';
 import Admin from './Screens/Admin';
 import ServiceProvider from './Screens/ServiceProvider';
 import PrayerTimes from './Screens/PrayerTimes';
 import AddService from './Screens/AddService';
 import Currency from './Screens/Currency';
+import ServiceList from './Screens/ServiceList';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -22,12 +23,13 @@ export default function App() {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
-        <Stack.Screen name="UseServices" component={UseServices}/>
+        <Stack.Screen name="Services" component={Services}/>
         <Stack.Screen name="Admin" component={Admin}/>
         <Stack.Screen name="ServiceProvider" component={ServiceProvider}/>
         <Stack.Screen name="PrayerTimes" component={PrayerTimes}/>
         <Stack.Screen name="AddService" component={AddService}/>
         <Stack.Screen name="Currency" component={Currency}/>
+        <Stack.Screen name="ServiceList" component={ServiceList}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -77,9 +77,6 @@ const styles = StyleSheet.create({
   timesContainer:{
     height:"100%",
     width:"100%",
-    //flex:1,
-    //justifyContent:'center',  
-    //padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap'      
 },

@@ -27,6 +27,24 @@ const Admin = ({navigation}) => {
         <TouchableOpacity      
           style={styles.button} 
           onPress={()=>{
+            navigation.navigate("ServiceList");
+            }
+          }
+          >
+          <Text style={styles.buttonText}>New Service Request</Text>            
+        </TouchableOpacity>
+        <TouchableOpacity      
+          style={styles.button} 
+          onPress={()=>{
+            navigation.navigate("ServiceList");
+            }
+          }
+          >
+          <Text style={styles.buttonText}>Show All Services</Text>            
+        </TouchableOpacity>
+        <TouchableOpacity      
+          style={styles.button} 
+          onPress={()=>{
             navigation.navigate("AddService");
             }
           }

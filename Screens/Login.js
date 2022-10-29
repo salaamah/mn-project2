@@ -18,7 +18,7 @@ const Login = ({navigation}) => {
         }else if(email.toLocaleLowerCase() == 'sp@test.com'){
           navigation.navigate('ServiceProvider');
         }else{
-          navigation.navigate('UseServices');
+          navigation.navigate('Services');
         }
         
     } catch (error) {

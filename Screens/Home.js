@@ -39,7 +39,7 @@ const Home = ({navigation}) => {
             <TouchableOpacity
             style={styles.button}
             onPress={()=>{
-                navigation.navigate('UseServices');
+                navigation.navigate('Services');
             }
             }
             >
