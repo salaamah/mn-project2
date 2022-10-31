@@ -1,65 +1,68 @@
 import { StyleSheet, TouchableOpacity, Text, View, Image, ImageBackground, ScrollView } from 'react-native'
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import data from './data';
 
-const UseServices = ({navigation}) => { 
+const Services = ({navigation}) => { 
+  const [allServces, setAllServices] = useState([]);
+  useEffect( ()=>{
+    fetch('https://mn-server.herokuapp.com/services')
+    .then(res=>res.json())
+    .then(result=>setAllServices(result))
+  },[]);
+
+  const activeServices = allServces.filter(service=>service?.status == 'Active');
+  const activedata = data.filter(service=>service?.status == 'Active');
+
   return (
     <ImageBackground 
     style={styles.bg}
     source={require('../assets/mn-bg-sky.png')}
-      >
-      <ScrollView>
+      >      
       <Text style={styles.text}>Available services</Text>
-      <View style={styles.serviceContainer}>
-        <TouchableOpacity 
-        style={styles.service}
-        onPress={()=>{
-          navigation.navigate('PrayerTimes');
+
+      <ScrollView>
+      <View style={styles.serviceContainer}>               
+        {
+          activedata.map(({s_id, s_name, icon, route})=>(
+              
+            <TouchableOpacity
+              key = {s_id}
+              style={styles.service}
+              onPress={()=>{
+                navigation.navigate(route);
+              }
+              }
+              >
+              <Image
+                style={styles.image}
+                source={icon}
+                />
+              <Text style={styles.text}>{s_name}</Text>
+            </TouchableOpacity>
+          ))
         }
+        {
+          activeServices.map(({s_id, s_name, status, icon, route})=>(
+              
+            <TouchableOpacity
+              key = {s_id}
+              style={styles.service}
+              onPress={()=>{
+                navigation.navigate("NewService");
+              }
+              }
+              >
+              <Image
+                style={styles.image}
+                source={require("../assets/images/new-service-icon.jpg")}
+                />
+              <Text style={styles.text}>{s_name}</Text>
+            </TouchableOpacity>
+          ))
         }
-        >
-          <Image
-            style={styles.image}
-            source={require('../assets/images/PrayerTime.jpeg')}
-          />
-          <Text style={styles.text}>Prayer Times</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.service}>
-          <Image
-            style={styles.image}
-            source={require('../assets/images/Guidance.jpeg')}
-          />
-          <Text style={styles.text}>Guidance</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.service}>
-          <Image
-            style={styles.image}
-            source={require('../assets/images/LostAndFound.jpeg')}
-          />
-          <Text style={styles.text}>Lost and Found</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.service}>
-          <Image
-            style={styles.image}
-            source={require('../assets/images/Zamzam.jpeg')}
-          />
-          <Text style={styles.text}>Zamzam</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.service}
-          onPress={()=>{
-            navigation.navigate('Currency');
-          }
-          }>
-          <Image
-            style={styles.image}
-            source={require('../assets/cx.jpg')}
-          />
-          <Text style={styles.text}>Exchange Rate</Text>
-        </TouchableOpacity>
       </View>
-      </ScrollView>
-      
+         
       <TouchableOpacity 
         style={styles.button} 
         onPress={()=>{
@@ -67,11 +70,12 @@ const UseServices = ({navigation}) => {
       >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
+      </ScrollView>
     </ImageBackground>
   )
 }
 
-export default UseServices
+export default Services
 
 const styles = StyleSheet.create({
   background:{

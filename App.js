@@ -13,6 +13,7 @@ import PrayerTimes from './Screens/PrayerTimes';
 import AddService from './Screens/AddService';
 import Currency from './Screens/Currency';
 import ServiceList from './Screens/ServiceList';
+import NewService from './Screens/NewService';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Stack.Screen name="AddService" component={AddService}/>
         <Stack.Screen name="Currency" component={Currency}/>
         <Stack.Screen name="ServiceList" component={ServiceList}/>
+        <Stack.Screen name="NewService" component={NewService}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
