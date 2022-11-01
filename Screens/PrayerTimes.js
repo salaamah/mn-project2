@@ -1,23 +1,34 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { make12hr } from './ManageTime.js';
 
 const PrayerTimes = () => {
   const [timeTable, setTimeTable] = useState({});
+  const url = 'https://api.aladhan.com/v1/timingsByCity?city=Madinah&country=Saudi%20Arabia%20&method=4';
 
   useEffect( ()=>{
-    fetch('https://api.aladhan.com/v1/timingsByCity?city=Madinah&country=Saudi%20Arabia%20&method=4')
+    fetch(url)
     .then(res=>res.json())
     .then(result=>setTimeTable(result.data))
   },[]);
   
-  const Fajr = timeTable.timings?.Fajr;
-  const Dhuhr = timeTable.timings?.Dhuhr;
-  const Asr = timeTable.timings?.Asr;
-  const Maghrib = timeTable.timings?.Maghrib;
-  const Isha = timeTable.timings?.Isha;
+  let Fajr = timeTable.timings?.Fajr;
+  let Dhuhr = timeTable.timings?.Dhuhr;
+  let Asr = timeTable.timings?.Asr;
+  let Maghrib = timeTable.timings?.Maghrib;
+  let Isha = timeTable.timings?.Isha;
   const day = timeTable.date?.gregorian?.weekday?.en;
   const date = timeTable.date?.readable
   const hijri = timeTable.date?.hijri?.date
+
+  if (typeof(Fajr)=="string"){
+    Fajr = make12hr(Fajr);
+    Dhuhr = make12hr(Dhuhr);
+    Asr = make12hr(Asr);
+    Maghrib = make12hr(Maghrib);
+    Isha = make12hr(Isha);
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -63,7 +74,7 @@ const PrayerTimes = () => {
         <View style={styles.box}>
           <Text style={styles.text}>{Isha}</Text>
         </View>
-      </ImageBackground>      
+      </ImageBackground>    
     </View>
   )
 }
