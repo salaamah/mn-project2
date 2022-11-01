@@ -14,6 +14,8 @@ import AddService from './Screens/AddService';
 import Currency from './Screens/Currency';
 import ServiceList from './Screens/ServiceList';
 import NewService from './Screens/NewService';
+import Guidance from './Screens/Guidance';
+import NewRequest from './Screens/NewRequest';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -32,6 +34,8 @@ export default function App() {
         <Stack.Screen name="Currency" component={Currency}/>
         <Stack.Screen name="ServiceList" component={ServiceList}/>
         <Stack.Screen name="NewService" component={NewService}/>
+        <Stack.Screen name="Guidance" component={Guidance}/>
+        <Stack.Screen name="NewRequest" component={NewRequest}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

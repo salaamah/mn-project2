@@ -21,13 +21,22 @@ const Admin = ({navigation}) => {
       style={styles.bg}
       source={require('../assets/mn-bg2.png')}>
       <View style={styles.innerBox}>    
-        <Text style={styles.header}>This is Admin page. {'\n'}More options will be added</Text>
+        <Text style={styles.header}>This is Admin page.</Text>
         <Text>Number of users: {user}</Text>
         <Text>Number of services: {services}</Text>
         <TouchableOpacity      
           style={styles.button} 
           onPress={()=>{
-            navigation.navigate("ServiceList");
+            navigation.navigate("Services");
+            }
+          }
+          >
+          <Text style={styles.buttonText}>Check active services</Text>            
+        </TouchableOpacity>
+        <TouchableOpacity      
+          style={styles.button} 
+          onPress={()=>{
+            navigation.navigate("NewRequest");
             }
           }
           >
