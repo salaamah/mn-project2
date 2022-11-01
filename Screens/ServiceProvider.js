@@ -7,8 +7,16 @@ const ServiceProvider = ({navigation}) => {
       style={styles.bg}
       source={require('../assets/mn-bg2.png')}>
         <View style={styles.innerBox}>
-        <Text style={styles.header}>This is Service Provider page. {'\n'}More options will be added</Text>
-
+        <Text style={styles.header}>This is Service Provider page.</Text>
+        <TouchableOpacity      
+          style={styles.button} 
+          onPress={()=>{
+            navigation.navigate("Services");
+            }
+          }
+          >
+          <Text style={styles.buttonText}>Go to services</Text>            
+        </TouchableOpacity>
         <TouchableOpacity      
           style={styles.button} 
           onPress={()=>{
@@ -16,7 +24,7 @@ const ServiceProvider = ({navigation}) => {
             }
           }
           >
-          <Text style={styles.buttonText}>Add new service</Text>            
+          <Text style={styles.buttonText}>Add a new service</Text>            
         </TouchableOpacity>
         </View>
     </ImageBackground>
@@ -55,6 +63,7 @@ const styles = StyleSheet.create({
 },
 buttonText:{
     color:'#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize:18
 },
 })

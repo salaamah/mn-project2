@@ -20,7 +20,6 @@ const Services = ({navigation}) => {
     source={require('../assets/mn-bg-sky.png')}
       >      
       <Text style={styles.text}>Available services</Text>
-
       <ScrollView>
       <View style={styles.serviceContainer}>               
         {
@@ -62,7 +61,7 @@ const Services = ({navigation}) => {
           ))
         }
       </View>
-         
+      </ScrollView>
       <TouchableOpacity 
         style={styles.button} 
         onPress={()=>{
@@ -70,7 +69,6 @@ const Services = ({navigation}) => {
       >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
-      </ScrollView>
     </ImageBackground>
   )
 }
@@ -91,14 +89,13 @@ const styles = StyleSheet.create({
   text:{
     textAlign:'center',
     fontSize:20,
-    //color:'white'
   },
   button:{
     alignSelf:'center',
     alignItems:'center',
     padding:12,
     backgroundColor:'#345B2A',
-    margin:50,
+    margin:18,
     width:120,
     borderRadius:5,
     
@@ -122,5 +119,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
+    height:1000,
   },
 })

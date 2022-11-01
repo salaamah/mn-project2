@@ -47,26 +47,7 @@ const ServiceList = () => {
                 />
               <Text style={styles.text}>{s_name}{"\n"}status: {status}</Text>
               <TouchableOpacity
-                onPress={()=>handleUpdate(status, s_id)
-                    
-                    
-                    //try{
-                        // fetch(`https://mn-server.herokuapp.com/services/${s_id}`,{
-                        //     method: 'PUT',
-                        //     headers: {
-                        //         'Accept': 'application/json',
-                        //         'content-type': 'application/json'
-                        //     },
-                        //     body: JSON.stringify(s)  
-                        // })
-                        // .then(res=>res.json())
-                        
-                    // }catch(error){
-                    //     Alert.alert(error.message);
-                    //     console.log(error.message);
-                    // }
-                    //navigation.navigate("ServiceList");
-                
+                onPress={()=>handleUpdate(status, s_id)                
                 }>
                 {status == "Active" 
                 ? <Text style={styles.click}>Click to disable</Text> 
@@ -103,7 +84,6 @@ const styles = StyleSheet.create({
       text:{
         textAlign:'center',
         fontSize:20,
-        //color:'white'
       },
       click:{
         textAlign:'center',

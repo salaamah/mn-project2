@@ -11,16 +11,14 @@ const Login = ({navigation}) => {
   const handleSignin = async () => {
     try {
         const user = await signInWithEmailAndPassword(auth, email, password);
-        console.log(user);
-        
+        //console.log(user);
         if (email.toLocaleLowerCase() == 'admin@test.com'){
           navigation.navigate('Admin');
         }else if(email.toLocaleLowerCase() == 'sp@test.com'){
           navigation.navigate('ServiceProvider');
         }else{
           navigation.navigate('Services');
-        }
-        
+        }  
     } catch (error) {
       Alert.alert(error.message);
     }
@@ -32,10 +30,9 @@ const Login = ({navigation}) => {
     }else{
       sendPasswordResetEmail(auth, email)
       .then(()=>{
-      Alert.alert("Please check inbox to reset your e-mail. Or check spam");
-  })
-    }
-    
+        Alert.alert("Please check inbox to reset your e-mail. Or check spam");
+      })
+    }  
   };
 
   return (

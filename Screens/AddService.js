@@ -23,8 +23,7 @@ const AddService = ({navigation}) => {
             navigation.navigate('Admin');
         }catch(error){
             Alert.alert(error.message);
-        }
-        
+        }    
     }
 
   return (

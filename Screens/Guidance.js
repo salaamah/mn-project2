@@ -77,7 +77,6 @@ export default Guidance
 const styles = StyleSheet.create({
     text:{
         fontSize:20,
-        //color:'white',
         padding:15
     },
     textHeading:{
