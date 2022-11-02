@@ -1,6 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { make12hr } from './ManageTime.js';
+import { make12hr } from './MyFunctions.js';
 
 const PrayerTimes = () => {
   const [timeTable, setTimeTable] = useState({});

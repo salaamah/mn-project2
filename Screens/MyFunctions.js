@@ -28,5 +28,4 @@ function hourWithZero(hour) {
     return hourInString;
 }
 
-//export default ManageTime;
-export {make12hr}
+export {make12hr, addAmPm, hourWithZero}
